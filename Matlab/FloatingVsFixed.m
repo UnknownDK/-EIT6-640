@@ -5,7 +5,8 @@ clear;
 
 antalBits = 8;
 antalBits2 = 16;
-bandpassSpecs = fdesign.lowpass('Fp,Fst,Ap,Ast',0.1253623,0.1352342,0.1,60)
+% bandpassSpecs = fdesign.lowpass('Fp,Fst,Ap,Ast',0.1253623,0.1352342,0.1,60)
+bandpassSpecs = fdesign.bandpass('Fst1,Fp1,Fp2,Fst2,Ast1,Ap,Ast2',.49,.5,.6,.7,60,1,80);
 lpKaiser = design(bandpassSpecs,'kaiserwin','SystemObject',true);
 firTest = dsp.FIRFilter(double(fi(lpKaiser.Numerator, 1,antalBits)));
 firTest2 = dsp.FIRFilter(double(fi(lpKaiser.Numerator, 1,antalBits2)));
